@@ -7,6 +7,14 @@ class UserRepository extends Repository<User> {
     const user = await this.findById(id);
     return user;
   }
+  public async list(): Promise<User[]> {
+    const users = await this.find();
+    return users;
+  }
+  public async findByEmail(email: string): Promise<User | undefined> {
+    const user = await this.findOne({ where: { email } });
+    return user;
+  }
 }
 
 export default UserRepository;
