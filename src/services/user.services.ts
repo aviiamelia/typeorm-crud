@@ -9,8 +9,8 @@ export const createUser = async (data: IUser) => {
   const userRepository = getRepository(User);
   const hashPassword = bcrypt.hashSync(data.password, 10);
   data.password = hashPassword;
-  const { name, email, password, isAdmin } = data;
-  const user = userRepository.create({ name, password, email, isAdmin });
+  const { name, email, password, isAdm } = data;
+  const user = userRepository.create({ name, password, email, isAdm });
   await userRepository.save(user);
   const { password: erase, ...response } = user;
   return response;
@@ -31,7 +31,7 @@ export const userLogin = async (data: ILogin) => {
   }
 
   let token = jwt.sign(
-    { uuid: user.uuid, email: user.email, password: user.password, isAdmin: user.isAdmin },
+    { uuid: user.uuid, email: user.email, password: user.password, isAdm: user.isAdm },
     "secret_key",
     {
       expiresIn: "1d",

@@ -14,7 +14,7 @@ export const userSchema = yup.object().shape({
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       "Password must have at least eight characters, one letter, one number and one special character"
     ),
-  isAdmin: yup.boolean().strict(true).required("You must specify this field"),
+  isAdm: yup.boolean().strict(true).required("You must specify this field"),
 });
 
 export const loginSchema = yup.object().shape({

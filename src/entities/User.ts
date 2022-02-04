@@ -15,7 +15,7 @@ export default class User {
   password!: string;
 
   @Column()
-  isAdmin!: boolean;
+  isAdm!: boolean;
 
   @Column()
   createOn!: Date;

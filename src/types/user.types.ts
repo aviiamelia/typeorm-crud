@@ -2,7 +2,7 @@ export interface IUser {
   name: string;
   password: string;
   email: string;
-  isAdmin: boolean;
+  isAdm: boolean;
   uuid?: string;
   createOn?: Date;
   updatedOn?: Date;
