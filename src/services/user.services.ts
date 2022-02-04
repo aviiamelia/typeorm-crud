@@ -27,7 +27,7 @@ export const userLogin = async (data: ILogin) => {
   const userRepository = getCustomRepository(UserRepository);
   const user = await userRepository.findByEmail(email);
   if (!user || !bcrypt.compareSync(password, user.password)) {
-    return { message: "wrong password/email" };
+    return { message: "Wrong email/password" };
   }
 
   let token = jwt.sign(

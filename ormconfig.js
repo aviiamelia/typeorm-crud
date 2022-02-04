@@ -13,3 +13,14 @@ const devEnv = {
   loggin: true,
 };
 module.exports = devEnv;
+
+const testEnv = {
+  type: "sqlite",
+  database: ":memory:",
+  dropSchema: true,
+  entities: ["./src/entities/*.ts"],
+  synchronize: true,
+  logging: false,
+};
+
+module.exports = process.env.NODE_ENV === "test" ? testEnv : developmentEnv;

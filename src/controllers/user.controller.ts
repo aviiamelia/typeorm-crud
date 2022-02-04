@@ -14,15 +14,10 @@ export const create = async (req: Request, res: Response) => {
     res.status(201).send(user);
   } catch (e: any) {
     console.log(e.detail);
-    if (e.detail.includes("already exists")) {
-      res.status(400).send({
-        message: "E-mail already registred",
-      });
-    } else {
-      res.status(400).send({
-        message: "something went wrong with the request",
-      });
-    }
+
+    res.status(400).send({
+      message: "E-mail already registered",
+    });
   }
 };
 
@@ -34,10 +29,17 @@ export const list = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   try {
     let token = await userLogin(req.body);
-    res.status(200).send(token);
+    if (token.token === undefined) {
+      res.status(401).send({
+        message: "Wrong email/password",
+      });
+    } else {
+      res.status(200).send(token);
+    }
   } catch (e) {
+    console.log(e);
     res.status(401).send({
-      message: "wrong password/email",
+      message: "Wrong email/password",
     });
   }
 };
@@ -68,9 +70,9 @@ export const userDelete = async (req: Request, res: Response) => {
         message: "User deleted with success",
       });
     } else {
-      return {
+      return res.status(404).send({
         message: "User not found",
-      };
+      });
     }
   } catch (e) {
     console.log(e);

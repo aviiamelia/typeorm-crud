@@ -9,9 +9,8 @@ const router = Router();
 
 export const userRouter = () => {
   router.post("", validate(userSchema), create);
-  router.get("", isAuthenticated, list);
-  router.get("/profile", isAuthenticated, isAdiminstrator, getUser);
-  router.post("/login", validate(loginSchema), login);
+  router.get("", isAuthenticated, isAdiminstrator, list);
+  router.get("/profile", isAuthenticated, getUser);
   router.patch("/:uuid", isAuthenticated, isAdiminstrator, update);
   router.delete("/:uuid", isAuthenticated, isAdiminstrator, userDelete);
   return router;

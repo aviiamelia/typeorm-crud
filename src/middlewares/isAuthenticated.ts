@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { config } from "../config/config";
-import { IUser } from "../types/user.types";
 
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   if (!req.headers.authorization) {
