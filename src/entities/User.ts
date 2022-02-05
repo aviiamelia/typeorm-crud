@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm";
 @Entity("users")
 export default class User {
   @PrimaryGeneratedColumn("uuid")
-  uuid!: string;
+  id!: string;
 
   @Column()
   name!: string;
@@ -18,11 +18,11 @@ export default class User {
   isAdm!: boolean;
 
   @Column()
-  createOn!: Date;
+  createdOn!: Date;
   @BeforeInsert()
   createdDate() {
     let date = new Date();
-    this.createOn = date;
+    this.createdOn = date;
   }
 
   @Column({ nullable: true })
